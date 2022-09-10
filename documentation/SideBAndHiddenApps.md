@@ -6,7 +6,7 @@ ___
 
 ## How to find Side B:
 
-1. [Download the latest firmware](#latest-firmware) (.zip file in Assets)
+1. [Download the latest firmware][latest-release] (.zip file in Assets)
 2. Unzip to folder
 3. Go to unzipped folder (this is Side A)
 4. Untar (unzip) file `resources.tar`
