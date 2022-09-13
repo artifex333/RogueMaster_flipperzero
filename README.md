@@ -147,7 +147,6 @@ $ ./fbt plugin_dist FIRMWARE_APP_SET=ext_apps
 - [Fix displaying LFRFID protocol names #1682 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1682)
 - [Add new card parsers #1503 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1503)
 - [Fix Mifare Classic 4K reading of the last 8 sectors #1712 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1712)
-- [SubGhz: fix decoder kelooq #1719 (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/1719)
 
 </details>
 
