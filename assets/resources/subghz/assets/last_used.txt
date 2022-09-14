@@ -1,6 +1,0 @@
-Filetype: Flipper SubGhz Setting File
-Version: 1
-
-Frequency: 433920000
-Hopper_frequency: 433920000
-Preset: AM270
