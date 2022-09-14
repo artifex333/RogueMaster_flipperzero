@@ -115,8 +115,6 @@ ReturnCode picopass_detect_card(int timeout) {
 ReturnCode picopass_read_card(PicopassBlock* AA1) {
     rfalPicoPassIdentifyRes idRes;
     rfalPicoPassSelectRes selRes;
-    rfalPicoPassReadCheckRes rcRes;
-    rfalPicoPassCheckRes chkRes;
 
     ReturnCode err;
 
@@ -136,6 +134,62 @@ ReturnCode picopass_read_card(PicopassBlock* AA1) {
         return err;
     }
 
+    memcpy(AA1[PICOPASS_CSN_BLOCK_INDEX].data, selRes.CSN, sizeof(selRes.CSN));
+    FURI_LOG_D(
+        TAG,
+        "csn %02x%02x%02x%02x%02x%02x%02x%02x",
+        AA1[PICOPASS_CSN_BLOCK_INDEX].data[0],
+        AA1[PICOPASS_CSN_BLOCK_INDEX].data[1],
+        AA1[PICOPASS_CSN_BLOCK_INDEX].data[2],
+        AA1[PICOPASS_CSN_BLOCK_INDEX].data[3],
+        AA1[PICOPASS_CSN_BLOCK_INDEX].data[4],
+        AA1[PICOPASS_CSN_BLOCK_INDEX].data[5],
+        AA1[PICOPASS_CSN_BLOCK_INDEX].data[6],
+        AA1[PICOPASS_CSN_BLOCK_INDEX].data[7]);
+
+    rfalPicoPassReadBlockRes cfg = {0};
+    err = rfalPicoPassPollerReadBlock(PICOPASS_CONFIG_BLOCK_INDEX, &cfg);
+    memcpy(AA1[PICOPASS_CONFIG_BLOCK_INDEX].data, cfg.data, sizeof(cfg.data));
+    FURI_LOG_D(
+        TAG,
+        "config %02x%02x%02x%02x%02x%02x%02x%02x",
+        AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[0],
+        AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[1],
+        AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[2],
+        AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[3],
+        AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[4],
+        AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[5],
+        AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[6],
+        AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[7]);
+
+    rfalPicoPassReadBlockRes aia;
+    err = rfalPicoPassPollerReadBlock(PICOPASS_AIA_BLOCK_INDEX, &aia);
+    memcpy(AA1[PICOPASS_AIA_BLOCK_INDEX].data, aia.data, sizeof(aia.data));
+    FURI_LOG_D(
+        TAG,
+        "aia %02x%02x%02x%02x%02x%02x%02x%02x",
+        AA1[PICOPASS_AIA_BLOCK_INDEX].data[0],
+        AA1[PICOPASS_AIA_BLOCK_INDEX].data[1],
+        AA1[PICOPASS_AIA_BLOCK_INDEX].data[2],
+        AA1[PICOPASS_AIA_BLOCK_INDEX].data[3],
+        AA1[PICOPASS_AIA_BLOCK_INDEX].data[4],
+        AA1[PICOPASS_AIA_BLOCK_INDEX].data[5],
+        AA1[PICOPASS_AIA_BLOCK_INDEX].data[6],
+        AA1[PICOPASS_AIA_BLOCK_INDEX].data[7]);
+
+    return ERR_NONE;
+}
+
+ReturnCode picopass_read_card(PicopassBlock* AA1) {
+    rfalPicoPassReadCheckRes rcRes;
+    rfalPicoPassCheckRes chkRes;
+
+    ReturnCode err;
+
+    uint8_t div_key[8] = {0};
+    uint8_t mac[4] = {0};
+    uint8_t ccnr[12] = {0};
+
     err = rfalPicoPassPollerReadCheck(&rcRes);
     if(err != ERR_NONE) {
         FURI_LOG_E(TAG, "rfalPicoPassPollerReadCheck error %d", err);
@@ -152,18 +206,11 @@ ReturnCode picopass_read_card(PicopassBlock* AA1) {
         return err;
     }
 
-    rfalPicoPassReadBlockRes csn;
-    err = rfalPicoPassPollerReadBlock(PICOPASS_CSN_BLOCK_INDEX, &csn);
-    memcpy(AA1[PICOPASS_CSN_BLOCK_INDEX].data, csn.data, sizeof(csn.data));
-
-    rfalPicoPassReadBlockRes cfg;
-    err = rfalPicoPassPollerReadBlock(PICOPASS_CONFIG_BLOCK_INDEX, &cfg);
-    memcpy(AA1[PICOPASS_CONFIG_BLOCK_INDEX].data, cfg.data, sizeof(cfg.data));
-
-    size_t app_limit = cfg.data[0] < PICOPASS_MAX_APP_LIMIT ? cfg.data[0] : PICOPASS_MAX_APP_LIMIT;
+    size_t app_limit = AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[0] < PICOPASS_MAX_APP_LIMIT ?
+                           AA1[PICOPASS_CONFIG_BLOCK_INDEX].data[0] :
+                           PICOPASS_MAX_APP_LIMIT;
 
     for(size_t i = 2; i < app_limit; i++) {
-        FURI_LOG_D(TAG, "rfalPicoPassPollerReadBlock block %d", i);
         rfalPicoPassReadBlockRes block;
         err = rfalPicoPassPollerReadBlock(i, &block);
         if(err != ERR_NONE) {
