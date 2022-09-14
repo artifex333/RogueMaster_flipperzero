@@ -11,6 +11,8 @@
 - Added [NFC Notifications fix #1731 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1731)
 - Added [Keynote BT plugin: long press on OK to switch between Space and Retur… #1729 (By coded-with-claws)](https://github.com/flipperdevices/flipperzero-firmware/pull/1729)
 - Assets: Includes New Dolphin Animations: [DJ (By @ut1s)]
+- Added [Charging icon update fix #1733 (By nminaylov)](https://github.com/flipperdevices/flipperzero-firmware/pull/1733)
+- Added [RFID: fix read info screen #1723 (By nminaylov)](https://github.com/flipperdevices/flipperzero-firmware/pull/1723)
 
 <table width="100%" border="0" cellspacing="0">
   <tr> <td colspan=2> <h3>This software is for experimental purposes only and is not meant for any illegal activity/purposes. We do not condone illegal activity and strongly encourage keeping transmissions to legal/valid uses allowed by law.</h3> </td> </tr>
@@ -149,6 +151,8 @@ $ ./fbt plugin_dist FIRMWARE_APP_SET=ext_apps
 - [Fix Mifare Classic 4K reading of the last 8 sectors #1712 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1712)
 - [NFC Notifications fix #1731 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1731)
 - [Keynote BT plugin: long press on OK to switch between Space and Retur… #1729 (By coded-with-claws)](https://github.com/flipperdevices/flipperzero-firmware/pull/1729)
+- [Charging icon update fix #1733 (By nminaylov)](https://github.com/flipperdevices/flipperzero-firmware/pull/1733)
+- [RFID: fix read info screen #1723 (By nminaylov)](https://github.com/flipperdevices/flipperzero-firmware/pull/1723)
 
 </details>
 
