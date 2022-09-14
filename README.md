@@ -8,6 +8,7 @@
 - Known Issues:			`FAP Loader`, `Chess` & `Chip8` (No Controls)
 - Assets: Includes New Dolphin Animations: [Allen & Maha (By Haseo)]
 - Assets: Includes New Dolphin Animations: [Starfield (By qqMajiKpp)]
+- Added [NFC Notifications fix #1731 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1731)
 
 <table width="100%" border="0" cellspacing="0">
   <tr> <td colspan=2> <h3>This software is for experimental purposes only and is not meant for any illegal activity/purposes. We do not condone illegal activity and strongly encourage keeping transmissions to legal/valid uses allowed by law.</h3> </td> </tr>
@@ -144,6 +145,7 @@ $ ./fbt plugin_dist FIRMWARE_APP_SET=ext_apps
 - [Fix displaying LFRFID protocol names #1682 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1682)
 - [Add new card parsers #1503 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1503)
 - [Fix Mifare Classic 4K reading of the last 8 sectors #1712 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1712)
+- [NFC Notifications fix #1731 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1731)
 
 </details>
 
