@@ -98,9 +98,6 @@ bool subghz_last_setting_save(SubGhzLastSetting* instance, const char* file_path
     do {
         if(FSE_OK != storage_sd_status(storage)) break;
 
-        // Delete prev file, because I didn't find solution to change preset if file already exists
-        storage_simply_remove(storage, file_path);
-
         // Open file
         if(!flipper_format_file_open_always(file, file_path)) break;
 
@@ -109,11 +106,11 @@ bool subghz_last_setting_save(SubGhzLastSetting* instance, const char* file_path
             break;
 
         FURI_LOG_D(TAG, "Preset %s", string_get_cstr(instance->preset_name));
-        if(!flipper_format_write_string_cstr(file, "Preset", string_get_cstr(instance->preset_name))) break;
-        if(!flipper_format_write_uint32(file, "Frequency", &instance->frequency, 1)) break;
-        if(!flipper_format_write_uint32(file, "Hopping", &instance->hopping, 1)) break;
-        if(!flipper_format_write_uint32(file, "DetectRaw", &instance->detect_raw, 1)) break;
-        if(!flipper_format_write_int32(file, "Rssi", &instance->rssi_threshold, 1)) break;
+        if(!flipper_format_insert_or_update_string_cstr(file, "Preset", string_get_cstr(instance->preset_name))) break;
+        if(!flipper_format_insert_or_update_uint32(file, "Frequency", &instance->frequency, 1)) break;
+        if(!flipper_format_insert_or_update_uint32(file, "Hopping", &instance->hopping, 1)) break;
+        if(!flipper_format_insert_or_update_uint32(file, "DetectRaw", &instance->detect_raw, 1)) break;
+        if(!flipper_format_insert_or_update_int32(file, "Rssi", &instance->rssi_threshold, 1)) break;
 
         saved = true;
     } while(0);
