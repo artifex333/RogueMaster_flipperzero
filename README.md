@@ -15,6 +15,7 @@
 - Added [RFID: fix read info screen #1723 (By nminaylov)](https://github.com/flipperdevices/flipperzero-firmware/pull/1723)
 - Added [SubGhz: fix display information in the file if the frequenc… #1724 (By Skorpionm)](https://github.com/flipperdevices/flipperzero-firmware/pull/1724)
 - Added [Show error popup when NFC chip is not init/disconnected #1722 (By Astrrra)](https://github.com/flipperdevices/flipperzero-firmware/pull/1722)
+- [Arkanoid: rand_range, remove temp number #66 (By @TQMatvey)](https://github.com/Eng1n33r/flipperzero-firmware/pull/66)
 
 <table width="100%" border="0" cellspacing="0">
   <tr> <td colspan=2> <h3>This software is for experimental purposes only and is not meant for any illegal activity/purposes. We do not condone illegal activity and strongly encourage keeping transmissions to legal/valid uses allowed by law.</h3> </td> </tr>
