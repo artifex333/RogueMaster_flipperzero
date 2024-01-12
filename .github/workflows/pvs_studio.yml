@@ -45,10 +45,10 @@ jobs:
         if: ${{ !github.event.pull_request.head.repo.fork && github.event.pull_request }}
         id: names
         run: |
-          echo "::set-output name=branch_name::${BRANCH_NAME}"
-          echo "::set-output name=commit_sha::${COMMIT_SHA}"
-          echo "::set-output name=default_target::${DEFAULT_TARGET}"
-          echo "::set-output name=suffix::${SUFFIX}"
+          echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+          echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
+          echo "default_target=${DEFAULT_TARGET}" >> $GITHUB_OUTPUT
+          echo "suffix=${SUFFIX}" >> $GITHUB_OUTPUT
 
       - name: 'Make reports directory'
         run: |
