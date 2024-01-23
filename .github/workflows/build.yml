@@ -48,10 +48,10 @@ jobs:
       - name: 'Generate suffixes for comment'
         id: names
         run: |
-          echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
-          echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
-          echo "default_target=${DEFAULT_TARGET}" >> $GITHUB_OUTPUT
-          echo "suffix=${SUFFIX}" >> $GITHUB_OUTPUT
+          echo "branch_name=${BRANCH_NAME}" >> "$GITHUB_OUTPUT"
+          echo "commit_sha=${COMMIT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "default_target=${DEFAULT_TARGET}" >> "$GITHUB_OUTPUT"
+          echo "suffix=${SUFFIX}" >> "$GITHUB_OUTPUT"
 
       - name: 'Bundle scripts'
         if: ${{ !github.event.pull_request.head.repo.fork }}
